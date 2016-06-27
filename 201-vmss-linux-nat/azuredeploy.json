@@ -212,7 +212,7 @@
               "image": {
                 "uri": "[parameters('imagePath')]"
               },
-              "osType": "Ubuntu"
+              "osType": "Linux"
             },
             "imageReference": "[variables('imageReference')]"
           },
