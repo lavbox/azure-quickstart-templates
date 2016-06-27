@@ -213,8 +213,7 @@
                 "uri": "[parameters('imagePath')]"
               },
               "osType": "Linux"
-            },
-            "imageReference": "[variables('imageReference')]"
+            }
           },
           "osProfile": {
             "computerNamePrefix": "[variables('namingInfix')]",
