@@ -210,7 +210,7 @@
               "caching": "ReadOnly",
               "createOption": "FromImage",
               "image": {
-                "uri": [ "parameters('imagePath')" ]
+                "uri": "[parameters('imagePath')]"
               },
               "osType": "Ubuntu"
             },
