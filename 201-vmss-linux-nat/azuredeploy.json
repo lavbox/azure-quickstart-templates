@@ -20,10 +20,10 @@
         "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values are: 15.10, 14.04.4-LTS."
       }
     },
-    "vmssName":{
-      "type":"string",
-      "metadata":{
-        "description":"String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
+    "vmssName": {
+      "type": "string",
+      "metadata": {
+        "description": "String used as a base for naming resources. Must be 3-61 characters in length and globally unique across Azure. A hash is prepended to this string for some resources, and resource-specific information is appended."
       },
       "maxLength": 61
     },
@@ -38,6 +38,12 @@
       "type": "string",
       "metadata": {
         "description": "Admin username on all VMs."
+      }
+    },
+    "imagePath": {
+      "type": "string",
+      "metadata": {
+        "description": "BLOB storage path of VM"
       }
     },
     "adminPassword": {
@@ -199,16 +205,14 @@
         "virtualMachineProfile": {
           "storageProfile": {
             "osDisk": {
-              "vhdContainers": [
-                "[concat('https://', variables('uniqueStringArray')[0], variables('newStorageAccountSuffix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[1], variables('newStorageAccountSuffix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[2], variables('newStorageAccountSuffix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[3], variables('newStorageAccountSuffix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[4], variables('newStorageAccountSuffix'), '.blob.core.windows.net/', variables('vhdContainerName'))]"
-              ],
+              "vhdContainers": [ ],
               "name": "[variables('osDiskName')]",
               "caching": "ReadOnly",
-              "createOption": "FromImage"
+              "createOption": "FromImage",
+              "image": {
+                "uri": [ "parameters('imagePath')" ]
+              },
+              "osType": "Ubuntu"
             },
             "imageReference": "[variables('imageReference')]"
           },
