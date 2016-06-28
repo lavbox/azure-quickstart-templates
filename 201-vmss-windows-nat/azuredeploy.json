@@ -45,6 +45,7 @@
       "type": "string",
       "metadata": {
         "description": "BLOB storage path of VM"
+}
       },
     "adminPassword": {
       "type": "securestring",
@@ -90,7 +91,6 @@
       "sku": "[parameters('windowsOSVersion')]",
       "version": "latest"
     },
-    "imageReference": "[variables('osType')]",
     "computeApiVersion": "2016-03-30",
     "networkApiVersion": "2016-03-30",
     "storageApiVersion": "2015-06-15"
