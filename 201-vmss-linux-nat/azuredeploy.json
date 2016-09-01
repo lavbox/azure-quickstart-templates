@@ -51,12 +51,6 @@
       "metadata": {
         "description": "Admin password on all VMs."
       }
-    },
-    "strvhdContainers": {
-      "type": "string",
-      "metadata": {
-        "description": "comma separated container paths"
-      }
     }
   },
   "variables": {
@@ -204,14 +198,14 @@
         "capacity": "[parameters('instanceCount')]"
       },
       "properties": {
-        "overprovision": "true",
+        "overprovision": "false",
         "upgradePolicy": {
           "mode": "Manual"
         },
         "virtualMachineProfile": {
           "storageProfile": {
             "osDisk": {
-              "vhdContainers": [ "[parameters('strvhdContainers')]" ],
+              "vhdContainers": [],
               "name": "[variables('osDiskName')]",
               "caching": "ReadOnly",
               "createOption": "FromImage",
