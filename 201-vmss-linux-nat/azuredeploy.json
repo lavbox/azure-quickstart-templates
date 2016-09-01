@@ -52,7 +52,7 @@
         "description": "Admin password on all VMs."
       }
     },
-    "vhdContainers": {
+    "strvhdContainers": {
       "type": "string",
       "metadata": {
         "description": "comma separated container paths"
@@ -211,7 +211,7 @@
         "virtualMachineProfile": {
           "storageProfile": {
             "osDisk": {
-              "vhdContainers": [ "[parameters('vhdContainers')]" ],
+              "vhdContainers": [ "[parameters('strvhdContainers')]" ],
               "name": "[variables('osDiskName')]",
               "caching": "ReadOnly",
               "createOption": "FromImage",
