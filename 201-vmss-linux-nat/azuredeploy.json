@@ -77,13 +77,18 @@
     "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
     "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
     "natPoolName": "[concat(variables('namingInfix'), 'natpool')]",
+	"natPoolName1": "[concat(variables('namingInfix'), 'natpool1')]",
     "bePoolName": "[concat(variables('namingInfix'), 'bepool')]",
     "natStartPort": 50000,
     "natEndPort": 50119,
     "natBackendPort": 3389,
+	"natStartPort1": 60000,
+    "natEndPort1": 60119,
+    "natBackendPort1": 22,
     "nicName": "[concat(variables('namingInfix'), 'nic')]",
     "ipConfigName": "[concat(variables('namingInfix'), 'ipconfig')]",
     "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
+	"frontEndIPConfigID1": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd1')]",
     "osType": {
       "publisher": "Canonical",
       "offer": "UbuntuServer",
@@ -178,6 +183,18 @@
               "frontendPortRangeEnd": "[variables('natEndPort')]",
               "backendPort": "[variables('natBackendPort')]"
             }
+          },
+		  {
+            "name": "[variables('natPoolName1')]",
+            "properties": {
+              "frontendIPConfiguration": {
+                "id": "[variables('frontEndIPConfigID1')]"
+              },
+              "protocol": "tcp",
+              "frontendPortRangeStart": "[variables('natStartPort1')]",
+              "frontendPortRangeEnd": "[variables('natEndPort1')]",
+              "backendPort": "[variables('natBackendPort1')]"
+            }
           }
         ]
       }
@@ -241,6 +258,9 @@
                         "loadBalancerInboundNatPools": [
                           {
                             "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/inboundNatPools/', variables('natPoolName'))]"
+                          },
+						              {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/inboundNatPools/', variables('natPoolName1'))]"
                           }
                         ]
                       }
